@@ -9,4 +9,8 @@ module.exports = {
     CREATE_GALLERY: 'createGalleryValidator',
     GALLERY_ID_VALIDATOR: 'galleryIdValidator',
     UPDATE_GALLERY: 'updateGalleryValidator',
+
+    CREATE_GALLERY_PIECE: 'createArtValidator',
+    ART_ID_VALIDATOR: 'artIdValidator',
+    UPDATE_ART_PIECE: 'updateArtValidator',
 };

@@ -15,6 +15,9 @@ const artPieceSchema = new Schema({
         type: Number,
         required: true
     },
+    art: {
+        type: String
+    },
     [GALLERY]: {
         type: Schema.Types.ObjectId,
         required: true,

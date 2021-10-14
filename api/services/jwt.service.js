@@ -8,9 +8,9 @@ const {
 const { ErrorHandler } = require('../ErrorHandler');
 
 module.exports = {
-    generateTokenPair: () => {
-        const access_token = jwt.sign({}, ACCESS_TOKEN_SECRET, { expiresIn: '30m' });
-        const refresh_token = jwt.sign({}, REFRESH_TOKEN_SECRET, { expiresIn: '31d' });
+    generateTokenPair: (user_id) => {
+        const access_token = jwt.sign({ user_id }, ACCESS_TOKEN_SECRET, { expiresIn: '30m' });
+        const refresh_token = jwt.sign({ user_id }, REFRESH_TOKEN_SECRET, { expiresIn: '31d' });
 
         return { access_token, refresh_token };
     },
@@ -23,7 +23,7 @@ module.exports = {
                 secretKey = REFRESH_TOKEN_SECRET;
             }
 
-            jwt.verify(token, secretKey);
+            return jwt.verify(token, secretKey);
         } catch (e) {
             const { status_code, custom_code, message } = INVALID_TOKEN;
             throw new ErrorHandler(status_code, custom_code, message);

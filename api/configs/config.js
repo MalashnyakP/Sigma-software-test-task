@@ -7,6 +7,8 @@ module.exports = {
 
     FRONTEND_URL: process.env.FRONTEND_URL || 'http://localhost:5000',
 
-    EMAIL_NAME_CREDENTIAL: process.env.EMAIL_NAME_CREDENTIAL,
-    EMAIL_PASS_CREDENTIAL: process.env.EMAIL_PASS_CREDENTIAL,
+    AWS_S3_ACCESS_KEY: process.env.AWS_S3_ACCESS_KEY,
+    AWS_S3_SECRET_KEY: process.env.AWS_S3_SECRET_KEY,
+    AWS_S3_REGION: process.env.AWS_S3_REGION || 'us-east-2',
+    AWS_S3_NAME: process.env.AWS_S3_NAME || 'sigma-test-task',
 };

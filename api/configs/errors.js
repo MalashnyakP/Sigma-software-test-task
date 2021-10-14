@@ -48,6 +48,12 @@ module.exports = {
     },
 
     NOT_FOUND: {
+        ART_PIECE_NF: {
+            message: 'No art piece found.',
+            status_code: statusCodes.NOT_FOUND,
+            custom_code: '404.2'
+        },
+
         GALLERY_NF: {
             message: 'No gallery found.',
             status_code: statusCodes.NOT_FOUND,

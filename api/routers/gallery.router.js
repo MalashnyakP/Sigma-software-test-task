@@ -8,7 +8,7 @@ const { galleryController } = require('../controllers');
 const { authMiddleware: { checkToken }, galleryMiddleware } = require('../middlewares');
 
 router.use(`/:${GALLERY_ID}`,
-    galleryMiddleware.validateDataDynamic(GALLERY_ID, PARAMS),
+    galleryMiddleware.validateDataDynamic(GALLERY_ID_VALIDATOR, PARAMS),
     galleryMiddleware.getGalleryByParam(GALLERY_ID, PARAMS, ID),
     galleryMiddleware.doesGalleryExists);
 

@@ -1,14 +1,22 @@
 const {
-    constants: { AUTHORIZATION }, statusCodes: { CREATED, NO_CONTENT }
+    constants: { AUTHORIZATION }, dbTableEnum: { USER }, statusCodes: { CREATED, NO_CONTENT }
 } = require('../configs');
 const { OAuth, User } = require('../models');
-const { jwtService, passwordService } = require('../services');
+const { jwtService, passwordService, s3Service } = require('../services');
 const { userUtil } = require('../utils');
 
 module.exports = {
     signUp: async (req, res, next) => {
         try {
-            const user = await User.createUserWithHashPass(req.body);
+            let user = await User.createUserWithHashPass(req.body);
+
+            if (req.files && req.files.avatar) {
+                const { avatar } = req.files;
+
+                const imgLocation = await s3Service.upload(avatar, USER, user._id.toString());
+
+                user = await User.findByIdAndUpdate(user._id, { avatar: imgLocation }, { new: true });
+            }
 
             res.status(CREATED).json({ user: userUtil.userNormalizator(user) });
         } catch (e) {
@@ -22,7 +30,7 @@ module.exports = {
 
             await passwordService.compare(password, user.password);
 
-            const tokenPair = jwtService.generateTokenPair();
+            const tokenPair = jwtService.generateTokenPair(user._id);
 
             await OAuth.create({ ...tokenPair, user: user._id });
 
@@ -50,7 +58,7 @@ module.exports = {
             const refresh_token = req.get(AUTHORIZATION);
             const { current_user } = req;
 
-            const tokenPair = jwtService.generateTokenPair();
+            const tokenPair = jwtService.generateTokenPair(current_user._id);
 
             await OAuth.findOneAndUpdate({ refresh_token }, tokenPair);
 
