@@ -1,6 +1,5 @@
 const {
     constants: { ACCESS, AUTHORIZATION },
-    dbTableEnum: { USER },
     errors: { UNAUTHORIZED: { INVALID_TOKEN } }
 } = require('../configs');
 const { ErrorHandler } = require('../ErrorHandler');
@@ -21,7 +20,7 @@ module.exports = {
 
             const DBField = `${tokenType}_token`;
 
-            const tokenFromDb = await tokenDB.findOne({ [DBField]: token }).populate(USER);
+            const tokenFromDb = await tokenDB.findOne({ [DBField]: token });
 
             if (!tokenFromDb) {
                 const { status_code, custom_code, message } = INVALID_TOKEN;

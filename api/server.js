@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const { configs: { DB_CONNECT_URL, PORT } } = require('./configs');
-const { authRouter } = require('./routers');
+const { authRouter, userRouter } = require('./routers');
 
 require('dotenv').config();
 
@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/auth', authRouter);
+app.use('/users', userRouter);
 app.use(_errorHandler);
 
 app.listen(PORT, () => {

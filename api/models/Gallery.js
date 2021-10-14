@@ -1,13 +1,13 @@
 const { Schema, model } = require('mongoose');
 
-const { dbTableEnum: { OAUTH, USER } } = require('../configs');
+const { dbTableEnum: { GALLERY, USER } } = require('../configs');
 
-const OAuthSchema = new Schema({
-    access_token: {
+const gallerySchema = new Schema({
+    name: {
         type: String,
         required: true
     },
-    refresh_token: {
+    location: {
         type: String,
         required: true
     },
@@ -18,10 +18,10 @@ const OAuthSchema = new Schema({
     }
 }, { timestamps: true });
 
-OAuthSchema.pre('findOne', function() {
+gallerySchema.pre('findOne', function() {
     this.populate(USER);
 });
 
-const OAuth = model(OAUTH, OAuthSchema);
+const Gallery = model(GALLERY, gallerySchema);
 
-module.exports = OAuth;
+module.exports = Gallery;
