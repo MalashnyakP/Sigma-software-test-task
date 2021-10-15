@@ -24,15 +24,12 @@ module.exports = {
 
         art: Joi
             .string()
-            .trim()
-            .required(),
+            .trim(),
 
         [GALLERY]: Joi
             .string()
             .trim()
             .regex(MONGO_BD_ID_REGEX)
-            .required()
-
     }),
 
     artIdValidator: Joi.object({

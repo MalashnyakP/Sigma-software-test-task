@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const { dbTableEnum: { USER } } = require('../configs');
+const { dbTableEnum: { USER }, userRolesEnum } = require('../configs');
 const { passwordService } = require('../services');
 
 const userSchema = new Schema({
@@ -22,6 +22,11 @@ const userSchema = new Schema({
     },
     avatar: {
         type: String
+    },
+    role: {
+        type: String,
+        default: userRolesEnum.USER,
+        enum: Object.values(userRolesEnum)
     }
 }, { timestamps: true });
 

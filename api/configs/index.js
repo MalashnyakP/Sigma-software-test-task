@@ -6,5 +6,6 @@ module.exports = {
     errors: require('./errors'),
     paramsNameEnum: require('./paramsName.enum'),
     statusCodes: require('./statusCodes.enum'),
+    userRolesEnum: require('./userRoles.enum'),
     validatorsEnum: require('./validatos.enum'),
 };

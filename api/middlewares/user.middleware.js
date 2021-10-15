@@ -1,6 +1,6 @@
 const {
     constants: { BODY },
-    errors: { CONFLICT: { USER_CONFLICT }, NOT_FOUND: { USER_NF }, BAD_REQUEST: { VALIDATION } },
+    errors: { CONFLICT: { USER_CONFLICT, USER_ROLE_CONFLICT }, NOT_FOUND: { USER_NF }, BAD_REQUEST: { VALIDATION } },
 } = require('../configs');
 const { ErrorHandler } = require('../ErrorHandler');
 const { User } = require('../models');
@@ -45,6 +45,25 @@ module.exports = {
 
             if (user) {
                 const { status_code, custom_code, message } = USER_CONFLICT;
+                throw new ErrorHandler(status_code, custom_code, message);
+            }
+
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    checkUserRole: (roles = []) => (req, res, next) => {
+        try {
+            const { role } = req.current_user;
+
+            if (!roles.length) {
+                return next();
+            }
+
+            if (!roles.includes(role)) {
+                const { status_code, custom_code, message } = USER_ROLE_CONFLICT;
                 throw new ErrorHandler(status_code, custom_code, message);
             }
 

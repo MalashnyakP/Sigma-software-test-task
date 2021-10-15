@@ -37,6 +37,11 @@ module.exports = {
             status_code: statusCodes.CONFLICT,
             custom_code: '409.1'
         },
+        USER_ROLE_CONFLICT: {
+            message: 'User doen`/t have roles permision.',
+            status_code: statusCodes.CONFLICT,
+            custom_code: '409.2'
+        }
     },
 
     UNAUTHORIZED: {

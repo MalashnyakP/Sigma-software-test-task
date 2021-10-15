@@ -1,4 +1,4 @@
-const { ArtPiece } = require('../models');
+const ArtPiece = require('../models/ArtPiece');
 
 module.exports = {
     artPiecesSearchQuery: async (query) => {
