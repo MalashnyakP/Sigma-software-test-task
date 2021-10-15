@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const expressFileUpload = require('express-fileupload');
 const mongoose = require('mongoose');
@@ -9,6 +10,12 @@ const {
     artPieceRouter, authRouter, galleryRouter, userRouter
 } = require('./routers');
 
+const corsOptions = {
+    origin: '*',
+    credentials: true,
+    optionSuccessStatus: 200,
+};
+
 mongoose.connect(DB_CONNECT_URL);
 
 const app = express();
@@ -16,11 +23,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(expressFileUpload());
+app.use(cors(corsOptions));
 
 app.use('/art', artPieceRouter);
 app.use('/auth', authRouter);
 app.use('/gallery', galleryRouter);
-app.use('/users', userRouter);
+app.use('/user', userRouter);
 app.use(_errorHandler);
 
 app.listen(PORT, () => {

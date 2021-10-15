@@ -8,8 +8,7 @@ module.exports = {
             .string()
             .alphanum()
             .min(3).max(30)
-            .trim()
-            .required(),
+            .trim(),
 
         email: Joi
             .string()
