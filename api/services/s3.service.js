@@ -19,14 +19,19 @@ module.exports = {
         const { data, name, mimetype } = file;
         const uploadPath = _filePathBuilder(name, itemType, itemId);
 
-        const item = await bucket.upload({
+        await bucket.upload({
             Bucket: AWS_S3_NAME,
             Body: data,
             Key: uploadPath,
             ContentType: mimetype
         }).promise();
 
-        return item.Location;
+        const url = bucket.getSignedUrl('getObject', {
+            Bucket: AWS_S3_NAME,
+            Key: uploadPath
+        });
+
+        return url;
     }
 };
 

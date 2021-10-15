@@ -27,8 +27,9 @@ module.exports = {
     doesUserExist: (req, res, next) => {
         try {
             const { user } = req;
+            const { current_user } = req;
 
-            if (!user) {
+            if (!user && !current_user) {
                 const { status_code, custom_code, message } = USER_NF;
                 throw new ErrorHandler(status_code, custom_code, message);
             }

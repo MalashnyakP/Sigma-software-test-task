@@ -14,11 +14,11 @@ module.exports = {
         }
     },
 
-    getUserById: (req, res, next) => {
+    getCurrentUser: (req, res, next) => {
         try {
-            const { user } = req;
+            const { current_user } = req;
 
-            res.json(userUtil.userNormalizator(user));
+            res.json(userUtil.userNormalizator(current_user));
         } catch (e) {
             next(e);
         }

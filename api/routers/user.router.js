@@ -24,22 +24,23 @@ router.post('/createGallery',
     authMiddleware.checkToken(),
     galleryController.createGallery);
 
+router.get('/',
+    authMiddleware.checkToken(),
+    userMiddleware.doesUserExist,
+    userController.getCurrentUser);
+
 router.use(`/:${USER_ID}`,
     userMiddleware.validateDataDynamic(USER_ID_VALIDATOR, PARAMS),
     userMiddleware.getUserByParam(USER_ID, PARAMS, ID),
-    userMiddleware.doesUserExist);
-
-router.get(`/:${USER_ID}`,
-    userController.getUserById);
+    userMiddleware.doesUserExist,
+    authMiddleware.checkToken());
 
 router.put(`/:${USER_ID}`,
     userMiddleware.validateDataDynamic(UPDATE_USER),
-    authMiddleware.checkToken(),
     userController.updateUser);
 
 router.delete(`/:${USER_ID}`,
     userMiddleware.validateDataDynamic(USER_ID_VALIDATOR, PARAMS),
-    authMiddleware.checkToken(),
     userController.deleteUser);
 
 module.exports = router;
