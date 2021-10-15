@@ -1,11 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 const ArtGallery = () => {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <div>art gall</div>
 }
 
-export default ArtGallery;
+export default ArtGallery

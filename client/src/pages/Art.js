@@ -1,11 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 const Art = () => {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <div>art</div>
 }
 
-export default Art;
+export default Art
