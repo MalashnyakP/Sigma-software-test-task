@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
 import React, { useContext, useState } from 'react'
 import { NavLink, useLocation, useHistory } from 'react-router-dom'
 import { Context } from '..'
@@ -23,22 +23,27 @@ const Auth = observer(() => {
     try {
       let data
       if (renderLogInPage) {
-        data = await login(email, password)
-
-        user.setUser(data.user)
+        console.log(1)
+        user.setUser(true)
         user.setIsAuth(true)
+        console.log(user.isAuth)
+
+        data = await login(email, password)
 
         history.push(USER_ROUTE)
       } else {
+        console.log(2)
         data = await registration(email, password)
 
-        user.setUser(data.user)
-        user.setIsAuth(true)
+        user.setUser(user)
+        user.setIsAuth(false)
 
         history.push(LOG_IN_ROUTE)
       }
     } catch (e) {
-      alert(e.response.data.message)
+      if (e.response.data.message) {
+        alert(e.response.data.message)
+      }
     }
   }
 

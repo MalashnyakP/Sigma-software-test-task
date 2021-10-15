@@ -1,32 +1,40 @@
-import { Art, ArtGallery, Auth, Gallery, User } from './pages'
-import { routesEnum } from './configs'
+import Auth from './pages/Auth'
+import Art from './pages/Art'
+import ArtGallery from './pages/ArtGallery'
+import {
+  ART_ROUTE,
+  ART_GALLERY_ROUTE,
+  REGISTRATION_ROUTE,
+  LOG_IN_ROUTE,
+  GALLERY_ROUTE,
+  USER_ROUTE,
+} from './configs/routes.enum'
+import Gallery from './pages/Gallery'
+import User from './pages/User'
 
-export const authRoutes = [
+export const routes = [
   {
-    path: routesEnum.USER_ROUTE + '/:user_id',
+    path: USER_ROUTE,
     Component: User,
   },
-]
-
-export const publicRoutes = [
   {
-    path: routesEnum.LOG_IN_ROUTE,
+    path: LOG_IN_ROUTE,
     Component: Auth,
   },
   {
-    path: routesEnum.REGISTRATION_ROUTE,
+    path: REGISTRATION_ROUTE,
     Component: Auth,
   },
   {
-    path: routesEnum.ART_ROUTE + '/:art_id',
+    path: ART_ROUTE + '/:art_id',
     Component: Art,
   },
   {
-    path: routesEnum.ART_GALLERY_ROUTE,
+    path: ART_GALLERY_ROUTE,
     Component: ArtGallery,
   },
   {
-    path: routesEnum.GALLERY_ROUTE + '/:galery_id',
+    path: GALLERY_ROUTE + '/:galery_id',
     Component: Gallery,
   },
 ]
