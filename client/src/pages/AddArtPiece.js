@@ -11,6 +11,7 @@ const AddArtPiece = () => {
   const [price, setPrice] = useState('')
   const [year, setYear] = useState('')
   const [gallery_id, setGalleryId] = useState('')
+  const [fileName, setFileName] = useState('')
   const [art, setArt] = useState('')
 
   useEffect(() => {
@@ -32,7 +33,6 @@ const AddArtPiece = () => {
 
   const addArtPieceClick = async () => {
     await addArtToGallery(name, price, year, art, gallery_id)
-    console.log(gallery_id)
   }
 
   if (loading) {
@@ -49,7 +49,7 @@ const AddArtPiece = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
         required
-      ></input>
+      />
       <label>Year</label>
       <input
         type="text"
@@ -58,7 +58,7 @@ const AddArtPiece = () => {
         value={year}
         onChange={(e) => setYear(e.target.value)}
         required
-      ></input>
+      />
       <label>Price</label>
       <input
         type="text"
@@ -67,15 +67,18 @@ const AddArtPiece = () => {
         value={price}
         onChange={(e) => setPrice(e.target.value)}
         required
-      ></input>
+      />
       <input
         type="file"
         placeholder="Select img for art"
         name="art"
-        value={art}
-        onChange={(e) => setArt(e.target.value)}
+        value={fileName}
+        onChange={(e) => {
+          setFileName(e.target.value)
+          setArt(e.target.files[0])
+        }}
         required
-      ></input>
+      />
       <select onChange={(e) => setGalleryId(e.target.value)}>
         {generateSelect()}
       </select>

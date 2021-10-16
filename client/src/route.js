@@ -38,7 +38,7 @@ export const publicRoutes = [
     Component: Auth,
   },
   {
-    path: ART_ROUTE + '/:art_id',
+    path: ART_ROUTE,
     Component: Art,
   },
   {

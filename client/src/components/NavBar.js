@@ -12,6 +12,8 @@ import { observer } from 'mobx-react-lite'
 import { useHistory } from 'react-router-dom'
 import { logout } from '../http/userAPI'
 
+import './NavBar.css'
+
 const NavBar = observer(() => {
   const { user } = useContext(Context)
   const history = useHistory()
@@ -33,76 +35,95 @@ const NavBar = observer(() => {
   }
 
   return (
-    <div>
+    <nav className="navContainer">
       {user.isAuth ? (
-        <ul>
-          <li>
+        <React.Fragment>
+          <a>
             <button
+              className="navButton"
               type="button"
               onClick={() => history.push(ART_GALLERY_ROUTE)}
             >
               Home
             </button>
-          </li>
+          </a>
           {checkRole() ? (
-            <div>
-              <li>
+            <React.Fragment>
+              <a>
                 <button
+                  className="navButton"
                   type="button"
                   onClick={() => history.push(CREATE_GALLERY)}
                 >
                   CreateGall
                 </button>
-              </li>
-              <li>
+              </a>
+              <a>
                 <button
+                  className="navButton"
                   type="button"
                   onClick={() => history.push(ADD_ART_PIECE)}
                 >
                   AddArt
                 </button>
-              </li>
-            </div>
+              </a>
+            </React.Fragment>
           ) : (
-            <li></li>
+            <React.Fragment></React.Fragment>
           )}
-          <li>
-            <button type="button" onClick={() => history.push(USER_ROUTE)}>
+          <span className="filler"></span>
+          <a>
+            <button
+              className="navButton"
+              type="button"
+              onClick={() => history.push(USER_ROUTE)}
+            >
               Cabinet
             </button>
-          </li>
-          <li>
-            <button type="button" onClick={() => logOut()}>
+          </a>
+          <a>
+            <button
+              className="navButton"
+              type="button"
+              onClick={() => logOut()}
+            >
               LogOut
             </button>
-          </li>
-        </ul>
+          </a>
+        </React.Fragment>
       ) : (
-        <ul>
-          <li>
+        <React.Fragment>
+          <a>
             <button
+              className="navButton"
               type="button"
               onClick={() => history.push(ART_GALLERY_ROUTE)}
             >
               Home
             </button>
-          </li>
-          <li>
+          </a>
+          <span className="filler"></span>
+          <a>
             <button
+              className="navButton"
               type="button"
               onClick={() => history.push(REGISTRATION_ROUTE)}
             >
               Register
             </button>
-          </li>
-          <li>
-            <button type="button" onClick={() => history.push(LOG_IN_ROUTE)}>
+          </a>
+          <a>
+            <button
+              className="navButton"
+              type="button"
+              onClick={() => history.push(LOG_IN_ROUTE)}
+            >
               LogIn
             </button>
-          </li>
-        </ul>
+          </a>
+        </React.Fragment>
       )}
-    </div>
+    </nav>
   )
 })
 

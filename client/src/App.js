@@ -6,22 +6,26 @@ import { observer } from 'mobx-react-lite'
 import { fetchCurrentUser } from './http/userAPI'
 import { Context } from '.'
 
+import './App.css'
+
 const App = observer(() => {
   const { user } = useContext(Context)
 
-  useEffect(() => {
-    fetchCurrentUser().then((data) => {
-      if (data) {
-        user.setUser(data)
-        user.setIsAuth(true)
-      }
-    })
-  }, [])
+  // useEffect(() => {
+  //   fetchCurrentUser().then((data) => {
+  //     if (data) {
+  //       user.setUser(data)
+  //       user.setIsAuth(true)
+  //     }
+  //   })
+  // }, [])
 
   return (
     <BrowserRouter>
       <NavBar />
-      <AppRouter />
+      <main>
+        <AppRouter />
+      </main>
     </BrowserRouter>
   )
 })

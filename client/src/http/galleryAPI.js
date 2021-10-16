@@ -28,7 +28,6 @@ export const fetchGallery = async (gallery_id) => {
 
 export const addArtToGallery = async (name, price, year, art, gallery) => {
   try {
-    console.log(art)
     const formData = new FormData()
     formData.append('art', art)
     formData.append('name', name)
@@ -37,7 +36,10 @@ export const addArtToGallery = async (name, price, year, art, gallery) => {
     formData.append('gallery', gallery)
 
     const { data } = await $host.post('user/addArtPiece', formData, {
-      headers: { Authorization: localStorage.getItem('access_token') },
+      headers: {
+        Authorization: localStorage.getItem('access_token'),
+        'Content-Type': 'multipart/form-data',
+      },
     })
     return data
   } catch (e) {
