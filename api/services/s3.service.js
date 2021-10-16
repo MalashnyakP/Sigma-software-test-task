@@ -28,7 +28,8 @@ module.exports = {
 
         const url = bucket.getSignedUrl('getObject', {
             Bucket: AWS_S3_NAME,
-            Key: uploadPath
+            Key: uploadPath,
+            Expires: 7 * 24 * 60 * 60
         });
 
         return url;

@@ -3,12 +3,12 @@ const ArtPiece = require('../models/ArtPiece');
 module.exports = {
     artPiecesSearchQuery: async (query) => {
         const {
-            perPage = 20, page = 1, sortBy = 'createdAt', orderBy = 'asc', ...filters
+            perPage = 20, page = 1, sortBy = 'createdAt', sortDir = 'asc', ...filters
         } = query;
 
         const searchQuery = {};
         const skip = perPage * (page - 1);
-        const sortOrder = orderBy === 'asc' ? 1 : -1;
+        const sortOrder = sortDir === 'asc' ? 1 : -1;
 
         const keys = Object.keys(filters);
 

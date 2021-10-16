@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const { configs: { DB_CONNECT_URL, PORT } } = require('./configs');
 const {
-    artPieceRouter, authRouter, galleryRouter, userRouter
+    artPieceRouter, authRouter, basketRouter, galleryRouter, userRouter
 } = require('./routers');
 
 const corsOptions = {
@@ -27,6 +27,7 @@ app.use(cors(corsOptions));
 
 app.use('/art', artPieceRouter);
 app.use('/auth', authRouter);
+app.use('/basket', basketRouter);
 app.use('/gallery', galleryRouter);
 app.use('/user', userRouter);
 app.use(_errorHandler);

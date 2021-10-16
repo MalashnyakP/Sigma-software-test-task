@@ -1,5 +1,5 @@
-const { dbTableEnum: { ART_PIECE, GALLERY }, statusCodes: { CREATED } } = require('../configs');
-const { ArtPiece } = require('../models');
+const { dbTableEnum: { ART_PIECE, GALLERY, USER }, statusCodes: { CREATED } } = require('../configs');
+const { ArtPiece, Basket } = require('../models');
 const { artPieceSerice: { artPiecesSearchQuery }, s3Service } = require('../services');
 
 module.exports = {
@@ -13,8 +13,6 @@ module.exports = {
                 name, price, year, [GALLERY]: gallery
             });
 
-            console.log(req.art);
-            console.log(req.files);
             if (req.files && req.files.art) {
                 const { art } = req.files;
 
@@ -68,6 +66,20 @@ module.exports = {
             const updatedArt = await ArtPiece.findByIdAndUpdate({ _id: art_id }, { ...artPieceData }, { new: true });
 
             res.json(updatedArt);
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    getArtPiecesFromBasket: async (req, res, next) => {
+        try {
+            const { current_user } = req;
+
+            const basket = await Basket.findOne({ [USER]: current_user._id });
+
+            const artFromBasket = await ArtPiece.find({ _id: basket.art_pieces });
+
+            res.json(artFromBasket);
         } catch (e) {
             next(e);
         }
