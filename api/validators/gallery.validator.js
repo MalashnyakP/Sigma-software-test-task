@@ -21,7 +21,6 @@ module.exports = {
             .string()
             .trim()
             .regex(MONGO_BD_ID_REGEX)
-            .required()
     }),
 
     galleryIdValidator: Joi.object({

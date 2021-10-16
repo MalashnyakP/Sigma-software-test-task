@@ -1,18 +1,20 @@
 const { dbTableEnum: { ART_PIECE, GALLERY }, statusCodes: { CREATED } } = require('../configs');
 const { ArtPiece } = require('../models');
-const { artPieceSerice: { artSearchQuery }, s3Service } = require('../services');
+const { artPieceSerice: { artPiecesSearchQuery }, s3Service } = require('../services');
 
 module.exports = {
     createArtPiece: async (req, res, next) => {
         try {
             const {
-                name, price, year, gallery_id
+                name, price, year, gallery
             } = req.body;
 
             let art_piece = await ArtPiece.create({
-                name, price, year, [GALLERY]: gallery_id
+                name, price, year, [GALLERY]: gallery
             });
 
+            console.log(req.art);
+            console.log(req.files);
             if (req.files && req.files.art) {
                 const { art } = req.files;
 
@@ -40,7 +42,7 @@ module.exports = {
 
     getAllArtPieces: async (req, res, next) => {
         try {
-            const artPieces = await artSearchQuery(req.query);
+            const artPieces = await artPiecesSearchQuery(req.query);
 
             res.json(artPieces);
         } catch (e) {

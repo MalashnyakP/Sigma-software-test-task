@@ -8,7 +8,8 @@ const { ErrorHandler } = require('../ErrorHandler');
 module.exports = {
     createGallery: async (req, res, next) => {
         try {
-            const gallery = await Gallery.create(req.body);
+            const { body: { name, location }, current_user } = req;
+            const gallery = await Gallery.create({ name, location, [USER]: current_user._id });
 
             res.status(CREATED).json(gallery);
         } catch (e) {

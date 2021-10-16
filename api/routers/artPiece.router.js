@@ -7,6 +7,8 @@ const {
 const { artPieceController } = require('../controllers');
 const { authMiddleware: { checkToken }, artPieceMiddleware } = require('../middlewares');
 
+router.get('', artPieceController.getAllArtPieces);
+
 router.use(`/:${ART_ID}`,
     artPieceMiddleware.validateDataDynamic(ART_ID_VALIDATOR, PARAMS),
     artPieceMiddleware.getArtByParam(ART_ID, PARAMS, ID),

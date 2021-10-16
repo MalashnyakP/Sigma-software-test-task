@@ -1,15 +1,14 @@
 const router = require('express').Router();
 
 const {
-    constants: { PARAMS }, dbFieldsEnum: { ID }, paramsNameEnum: { GALLERY_ID, USER_ID },
+    constants: { PARAMS }, dbFieldsEnum: { ID }, paramsNameEnum: { GALLERY_ID },
     userRolesEnum: { OWNER },
-    validatorsEnum: { GALLERY_ID_VALIDATOR, UPDATE_GALLERY, USER_ID_VALIDATOR }
+    validatorsEnum: { GALLERY_ID_VALIDATOR, UPDATE_GALLERY }
 } = require('../configs');
 const { galleryController } = require('../controllers');
 const { authMiddleware: { checkToken }, galleryMiddleware, userMiddleware } = require('../middlewares');
 
-router.get(`/user/:${USER_ID}`,
-    userMiddleware.validateDataDynamic(USER_ID_VALIDATOR, PARAMS),
+router.get('/user',
     checkToken(),
     userMiddleware.checkUserRole(OWNER),
     galleryController.getUserGallery);
