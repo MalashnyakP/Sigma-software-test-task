@@ -1,17 +1,24 @@
+import { useContext } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
+import { authRoutes, publicRoutes } from '../route'
+import { Context } from '..'
 
-import { routes } from '../route'
-import { LOG_IN_ROUTE } from '../configs/routes.enum'
+const AppRouter = observer(() => {
+  const { user } = useContext(Context)
 
-const AppRouter = () => {
   return (
     <Switch>
-      {routes.map(({ path, Component }) => (
+      {user.isAuth &&
+        authRoutes.map(({ path, Component }) => (
+          <Route key={path} path={path} component={Component} exact />
+        ))}
+      {publicRoutes.map(({ path, Component }) => (
         <Route key={path} path={path} component={Component} exact />
       ))}
-      <Redirect to={LOG_IN_ROUTE} />
+      <Redirect to="/" />
     </Switch>
   )
-}
+})
 
 export default AppRouter

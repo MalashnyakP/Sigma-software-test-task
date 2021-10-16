@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import AppRouter from './components/AppRouter'
+import NavBar from './components/NavBar'
 import { observer } from 'mobx-react-lite'
 import { fetchCurrentUser } from './http/userAPI'
 import { Context } from '.'
@@ -10,13 +11,16 @@ const App = observer(() => {
 
   useEffect(() => {
     fetchCurrentUser().then((data) => {
-      user.setUser(data)
-      user.setIsAuth(true)
+      if (data) {
+        user.setUser(data)
+        user.setIsAuth(true)
+      }
     })
   }, [])
 
   return (
     <BrowserRouter>
+      <NavBar />
       <AppRouter />
     </BrowserRouter>
   )
