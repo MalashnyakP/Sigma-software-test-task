@@ -1,9 +1,19 @@
 .MuiPagination-root {
-    width: 100%;
-    bottom: 0;
-    position: center;
+    width: 15vw;
+    margin: 0 auto;
 }
 
-form {
-    
+.queryContainer {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex;
+    column-gap: 6px;
+    margin: 6px 
+}
+
+.searchBtn {
+    background-color: #6200ee;
+    border: none;
+    color: #fff;
+    border-radius: 3px;    
 }

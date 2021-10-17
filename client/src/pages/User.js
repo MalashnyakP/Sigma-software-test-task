@@ -1,18 +1,16 @@
 import { observer } from 'mobx-react-lite'
 import React, { useContext, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
 
 import { fetchCurrentUser } from '../http/userAPI'
 import { Context } from '..'
-import { UPDATE_USER } from '../configs/routes.enum'
+
+import './styles/Cabinet.css'
 
 const User = observer(() => {
   const { user } = useContext(Context)
   useEffect(() => {
     fetchCurrentUser().then((data) => user.setUser(data))
   }, [])
-
-  const history = useHistory()
 
   let data = {}
   Object.assign(data, user.user.data)
@@ -48,9 +46,6 @@ const User = observer(() => {
       ) : (
         <h3></h3>
       )}
-      <button type="submit" onClick={() => history.push(UPDATE_USER)}>
-        Update
-      </button>
     </div>
   )
 })

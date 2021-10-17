@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { fetchUserGalleries } from '../http/userAPI'
 import { addArtToGallery } from '../http/galleryAPI'
 
+import './styles/AddArtPiece.css'
+
 const AddArtPiece = () => {
   const [loading, setLoading] = useState(true)
   const [userGalleries, setUserGalleries] = useState()
@@ -47,7 +49,7 @@ const AddArtPiece = () => {
   }
 
   return (
-    <div>
+    <div className="addArtContainer">
       <label>Name</label>
       <input
         type="text"
@@ -86,11 +88,8 @@ const AddArtPiece = () => {
         }}
         required
       />
-      {/* <select onChange={(e) => setGalleryId(e.target.value)} defaultValue="">
-        {generateSelect()}
-      </select> */}
       {generateSelect()}
-      <button type="submit" onClick={addArtPieceClick}>
+      <button type="submit" onClick={addArtPieceClick} className="addArtBtn">
         Create
       </button>
     </div>

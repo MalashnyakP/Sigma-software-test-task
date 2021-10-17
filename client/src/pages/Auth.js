@@ -2,12 +2,14 @@ import React, { useContext, useState } from 'react'
 import { NavLink, useLocation, useHistory } from 'react-router-dom'
 import { Context } from '..'
 import {
+  ART_GALLERY_ROUTE,
   LOG_IN_ROUTE,
   REGISTRATION_ROUTE,
-  USER_ROUTE,
 } from '../configs/routes.enum'
 import { login, registration } from '../http/userAPI'
 import { observer } from 'mobx-react-lite'
+
+import './styles/Auth.css'
 
 const Auth = observer(() => {
   const { user } = useContext(Context)
@@ -29,7 +31,7 @@ const Auth = observer(() => {
         user.setRole(data.data.user.role)
         user.setId(data.data.user._id)
 
-        history.push(USER_ROUTE)
+        history.push(ART_GALLERY_ROUTE)
       } else {
         data = await registration(email, password)
 
@@ -44,46 +46,42 @@ const Auth = observer(() => {
   }
 
   return (
-    <div>
-      <h2>{renderLogInPage ? 'Log in' : 'Register'}</h2>
-      <div>
+    <div className="authContainer">
+      <h2 className="authText">{renderLogInPage ? 'Log in' : 'Register'}</h2>
+
+      <label>Email</label>
+      <input
+        type="text"
+        placeholder="Enter email"
+        name="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      ></input>
+      <label>Password</label>
+      <input
+        type="password"
+        placeholder="Enter password"
+        name="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      ></input>
+
+      {renderLogInPage ? (
         <div>
-          <label>Email</label>
-          <input
-            type="text"
-            placeholder="Enter email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          ></input>
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="Enter password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          ></input>
-          <div>
-            {renderLogInPage ? (
-              <div>
-                Need an account?
-                <NavLink to={REGISTRATION_ROUTE}> Sign up</NavLink>
-              </div>
-            ) : (
-              <div>
-                Already have an account?
-                <NavLink to={LOG_IN_ROUTE}> Log in</NavLink>
-              </div>
-            )}
-            <button type="submit" onClick={click}>
-              {renderLogInPage ? 'Log In' : 'Register'}
-            </button>
-          </div>
+          Need an account?
+          <NavLink to={REGISTRATION_ROUTE}> Sign up</NavLink>
         </div>
-      </div>
+      ) : (
+        <div>
+          Already have an account?
+          <NavLink to={LOG_IN_ROUTE}> Log in</NavLink>
+        </div>
+      )}
+      <button type="submit" onClick={click} className="authBtn">
+        {renderLogInPage ? 'Log In' : 'Register'}
+      </button>
     </div>
   )
 })

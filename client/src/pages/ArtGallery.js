@@ -29,7 +29,7 @@ const ArtGallery = () => {
   const [priceGte, setPriceGte] = useState('')
   const [priceLte, setPriceLte] = useState('')
 
-  const [perPage, setPerPage] = useState('')
+  const [perPage, setPerPage] = useState('5')
   const [query, setQuery] = useState('')
 
   const queryBuilder = new QueryBuilder()
@@ -71,75 +71,75 @@ const ArtGallery = () => {
 
   return (
     <div>
-      <form>
-        <div>
-          <label>Price</label>
-          <input
-            type="number"
-            name="priceGte"
-            placeholder="from"
-            min="0"
-            onChange={(e) => {
-              setPriceGte(e.target.value)
-            }}
-          />
-          <input
-            type="number"
-            name="priceLte"
-            placeholder="to"
-            min="0"
-            onChange={(e) => {
-              setPriceLte(e.target.value)
-            }}
-          />
-        </div>
-        <div>
-          <label>Year</label>
-          <input
-            type="number"
-            name="yearGte"
-            placeholder="from"
-            min="0"
-            onChange={(e) => {
-              setYearGte(e.target.value)
-            }}
-          />
-          <input
-            type="number"
-            name="yearLte"
-            placeholder="to"
-            min="0"
-            onChange={(e) => {
-              setYearLte(e.target.value)
-            }}
-          />
-        </div>
-      </form>
-      <select
-        onChange={(e) => {
-          setPerPage(e.target.value)
-        }}
-      >
-        <option disabled>Show per page</option>
-        <option value="20">20</option>
-        <option value="3">30</option>
-        <option value="50">50</option>
-      </select>
-      <button
-        type="submit"
-        className=""
-        onClick={() => {
-          queryBuilder.priceLte(priceLte)
-          queryBuilder.priceGte(priceGte)
-          queryBuilder.perPage(perPage)
-          queryBuilder.yearLte(yearLte)
-          queryBuilder.yearGte(yearGte)
+      <div className="queryContainer">
+        <label>Price</label>
+        <input
+          type="number"
+          name="priceGte"
+          placeholder="from"
+          min="0"
+          onChange={(e) => {
+            setPriceGte(e.target.value)
+          }}
+        />
+        <input
+          type="number"
+          name="priceLte"
+          placeholder="to"
+          min="0"
+          onChange={(e) => {
+            setPriceLte(e.target.value)
+          }}
+        />
 
-          setQuery(queryBuilder.build())
-        }}
-      >
-        Search
-      </button>
+        <label>Year</label>
+        <input
+          type="number"
+          name="yearGte"
+          placeholder="from"
+          min="0"
+          onChange={(e) => {
+            setYearGte(e.target.value)
+          }}
+        />
+        <input
+          type="number"
+          name="yearLte"
+          placeholder="to"
+          min="0"
+          onChange={(e) => {
+            setYearLte(e.target.value)
+          }}
+        />
+        <select
+          onChange={(e) => {
+            setPerPage(e.target.value)
+          }}
+        >
+          <option disabled>Show per page</option>
+          <option value="5">5</option>
+          <option value="20" selected>
+            20
+          </option>
+          <option value="50">50</option>
+        </select>
+        <button
+          type="submit"
+          className="searchBtn"
+          onClick={() => {
+            queryBuilder.priceLte(priceLte)
+            queryBuilder.priceGte(priceGte)
+            queryBuilder.perPage(perPage)
+            queryBuilder.yearLte(yearLte)
+            queryBuilder.yearGte(yearGte)
+
+            setQuery(queryBuilder.build())
+          }}
+        >
+          Search
+        </button>
+      </div>
+
       <ArtGallerySection
         artPieces={artPieces}
         buttonClick={addArtToBasketClick}
@@ -148,7 +148,6 @@ const ArtGallery = () => {
       <Pagination
         count={maxPage}
         size="small"
-        className="paggination"
         onChange={(e, page) => {
           queryBuilder.priceLte(priceLte)
           queryBuilder.priceGte(priceGte)

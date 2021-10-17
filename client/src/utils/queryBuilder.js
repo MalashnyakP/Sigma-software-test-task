@@ -40,14 +40,12 @@ class QueryBuilder {
   }
 
   build() {
-    console.log(this)
     const query = Object.keys(this)
       .filter((key) => this[key])
       .map(
         (key) => `${encodeURIComponent(key)}=${encodeURIComponent(this[key])}`,
       )
       .join('&')
-    console.log(query)
     return `?${query}`
   }
 }

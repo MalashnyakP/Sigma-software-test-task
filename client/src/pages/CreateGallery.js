@@ -5,6 +5,8 @@ import { createGallery } from '../http/galleryAPI'
 import { Context } from '..'
 import { GALLERY_ROUTE } from '../configs/routes.enum'
 
+import './styles/CreateGallery.css'
+
 const CreateGallery = () => {
   const [name, setName] = useState('')
   const [location, setLocation] = useState('')
@@ -20,7 +22,7 @@ const CreateGallery = () => {
   }
 
   return (
-    <div>
+    <div className="addGallContainer">
       <label>Name</label>
       <input
         type="text"
@@ -39,7 +41,7 @@ const CreateGallery = () => {
         onChange={(e) => setLocation(e.target.value)}
         required
       ></input>
-      <button type="submit" onClick={createGalleryClick}>
+      <button type="submit" onClick={createGalleryClick} className="addGalBtn">
         Create
       </button>
     </div>
