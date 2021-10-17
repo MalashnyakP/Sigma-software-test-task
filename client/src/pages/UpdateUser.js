@@ -12,10 +12,11 @@ const UpdateUser = () => {
 
   const [name, setName] = useState('')
   const [avatar, setAvatar] = useState('')
+  const [fileName, setFileName] = useState('')
 
   const updateUserClick = async () => {
-    const data = await updateUser(user.id, name, avatar)
-    user.setUser(data)
+    const data = await updateUser(name, avatar)
+    user.setUser(data.data)
 
     history.push(USER_ROUTE)
   }
@@ -35,8 +36,11 @@ const UpdateUser = () => {
         type="file"
         placeholder="Select img for avatar"
         name="avatar"
-        value={avatar}
-        onChange={(e) => setAvatar(e.target.value)}
+        value={fileName}
+        onChange={(e) => {
+          setFileName(e.target.value)
+          setAvatar(e.target.files[0])
+        }}
         required
       ></input>
       <button type="submit" onClick={updateUserClick}>

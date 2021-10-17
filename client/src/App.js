@@ -11,14 +11,16 @@ import './App.css'
 const App = observer(() => {
   const { user } = useContext(Context)
 
-  // useEffect(() => {
-  //   fetchCurrentUser().then((data) => {
-  //     if (data) {
-  //       user.setUser(data)
-  //       user.setIsAuth(true)
-  //     }
-  //   })
-  // }, [])
+  useEffect(() => {
+    if (localStorage.getItem('refresh_token')) {
+      fetchCurrentUser().then((data) => {
+        if (data) {
+          user.setUser(data)
+          user.setIsAuth(true)
+        }
+      })
+    }
+  }, [])
 
   return (
     <BrowserRouter>

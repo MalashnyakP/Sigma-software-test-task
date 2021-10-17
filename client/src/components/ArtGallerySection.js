@@ -3,6 +3,10 @@ import './ArtGallerySection.css'
 // eslint-disable-next-line react/prop-types
 const ArtGallerySection = ({ artPieces, buttonClick, buttonText }) => {
   const createGrid = () => {
+    if (!artPieces) {
+      return <h4>Yours basket is empty</h4>
+    }
+
     return Object.values(artPieces).map((artPiece) => {
       return (
         <article key={artPiece._id}>

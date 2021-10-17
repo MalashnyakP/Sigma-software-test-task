@@ -122,7 +122,7 @@ const ArtGallery = () => {
       >
         <option disabled>Show per page</option>
         <option value="20">20</option>
-        <option value="30">30</option>
+        <option value="3">30</option>
         <option value="50">50</option>
       </select>
       <button

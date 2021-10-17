@@ -53,12 +53,15 @@ export const fetchUserGalleries = async () => {
   }
 }
 
-export const updateUser = async (user_id, name, avatar) => {
+export const updateUser = async (name, avatar) => {
   try {
     const { data } = await $host.put(
-      `user/${user_id}`,
+      `user/`,
       { name, avatar },
-      { params: { user_id } },
+      {},
+      {
+        headers: { Authorization: localStorage.getItem('access_token') },
+      },
     )
     return data
   } catch (e) {

@@ -1,4 +1,9 @@
-.paggination {
+.MuiPagination-root {
     width: 100%;
     bottom: 0;
+    position: center;
+}
+
+form {
+    
 }
