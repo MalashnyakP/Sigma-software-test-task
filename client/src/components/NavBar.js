@@ -7,6 +7,7 @@ import {
   REGISTRATION_ROUTE,
   USER_ROUTE,
   ADD_ART_PIECE,
+  BASKET,
 } from '../configs/routes.enum'
 import { observer } from 'mobx-react-lite'
 import { useHistory } from 'react-router-dom'
@@ -72,6 +73,13 @@ const NavBar = observer(() => {
             <React.Fragment></React.Fragment>
           )}
           <span className="filler"></span>
+          <button
+            className="navButton"
+            type="button"
+            onClick={() => history.push(BASKET)}
+          >
+            Basket
+          </button>
           <a>
             <button
               className="navButton"

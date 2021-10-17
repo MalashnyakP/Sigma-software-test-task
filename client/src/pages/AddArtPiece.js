@@ -22,13 +22,20 @@ const AddArtPiece = () => {
   }, [])
 
   const generateSelect = () => {
-    return Object.values(userGalleries).map((gallery) => {
-      return (
-        <option value={gallery._id} key={gallery._id}>
-          {gallery.name}
+    return (
+      <select onChange={(e) => setGalleryId(e.target.value)}>
+        <option value="" selected disabled hidden>
+          Choose from yours Galleries
         </option>
-      )
-    })
+        {Object.values(userGalleries).map((gallery) => {
+          return (
+            <option value={gallery._id} key={gallery._id}>
+              {gallery.name}
+            </option>
+          )
+        })}
+      </select>
+    )
   }
 
   const addArtPieceClick = async () => {
@@ -79,9 +86,10 @@ const AddArtPiece = () => {
         }}
         required
       />
-      <select onChange={(e) => setGalleryId(e.target.value)}>
+      {/* <select onChange={(e) => setGalleryId(e.target.value)} defaultValue="">
         {generateSelect()}
-      </select>
+      </select> */}
+      {generateSelect()}
       <button type="submit" onClick={addArtPieceClick}>
         Create
       </button>
