@@ -7,12 +7,12 @@ import {
   addArtPieceToBasket,
   createUserBasket,
   getUserBasket,
-} from '../http/basketApi'
-import { getArtPiecesQuery } from '../http/artPieceApi'
-import QueryBuilder from '../utils/queryBuilder'
+} from '../api/basketApi'
+import { getArtPiecesQuery } from '../api/artPieceApi'
+import QueryBuilder from '../helpers/queryBuilder'
 import ArtGallerySection from '../components/ArtGallerySection'
 
-import './styles/ArtGallery.css'
+import '../styles/ArtGallery.css'
 import { Context } from '..'
 
 const ArtGallery = () => {
@@ -43,8 +43,6 @@ const ArtGallery = () => {
     let basket = await getUserBasket()
 
     if (!basket.art_pieces) {
-      console.log(art_id)
-
       basket = await createUserBasket()
     }
 

@@ -2,7 +2,7 @@ import { observe } from 'mobx'
 import { useContext, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { updateUser } from '../http/userAPI'
+import { updateUser } from '../api/userAPI'
 import { Context } from '..'
 import { USER_ROUTE } from '../configs/routes.enum'
 

@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite'
 import { useContext, useEffect, useState } from 'react'
 
 import { Context } from '..'
-import { fetchGallery } from '../http/galleryAPI'
+import { fetchGallery } from '../api/galleryAPI'
 
 const Gallery = observer(() => {
   const [isLoading, setLoading] = useState(true)
@@ -20,7 +20,6 @@ const Gallery = observer(() => {
     return <div>Loading...</div>
   }
 
-  console.log(galleryState)
   const { name, location } = galleryState.data
   const owner = galleryState.data.user.name
 

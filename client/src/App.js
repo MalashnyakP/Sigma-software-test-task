@@ -3,10 +3,10 @@ import { BrowserRouter } from 'react-router-dom'
 import AppRouter from './components/AppRouter'
 import NavBar from './components/NavBar'
 import { observer } from 'mobx-react-lite'
-import { fetchCurrentUser } from './http/userAPI'
+import { fetchCurrentUser } from './api/userAPI'
 import { Context } from '.'
 
-import './App.css'
+import './styles/App.css'
 
 const App = observer(() => {
   const { user } = useContext(Context)

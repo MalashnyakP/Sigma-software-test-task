@@ -4,7 +4,7 @@ import ArtGallerySection from '../components/ArtGallerySection'
 import {
   getArtPiecesFromBasket,
   removeArtPieceToBasket,
-} from '../http/basketApi'
+} from '../api/basketApi'
 
 const Basket = () => {
   const [artPieces, setArtPieces] = useState([])

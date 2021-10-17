@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 
-import { authRoutes, publicRoutes } from '../route'
+import { authRoutes, publicRoutes } from '../helpers/route'
 import { ART_GALLERY_ROUTE } from '../configs/routes.enum'
 import { Context } from '..'
 

@@ -29,15 +29,16 @@ router.get('/',
     userMiddleware.doesUserExist,
     userController.getCurrentUser);
 
+router.put('/',
+    userMiddleware.validateDataDynamic(UPDATE_USER),
+    authMiddleware.checkToken(),
+    userController.updateUser);
+
 router.use(`/:${USER_ID}`,
     userMiddleware.validateDataDynamic(USER_ID_VALIDATOR, PARAMS),
     userMiddleware.getUserByParam(USER_ID, PARAMS, ID),
     userMiddleware.doesUserExist,
     authMiddleware.checkToken());
-
-router.put(`/:${USER_ID}`,
-    userMiddleware.validateDataDynamic(UPDATE_USER),
-    userController.updateUser);
 
 router.delete(`/:${USER_ID}`,
     userMiddleware.validateDataDynamic(USER_ID_VALIDATOR, PARAMS),

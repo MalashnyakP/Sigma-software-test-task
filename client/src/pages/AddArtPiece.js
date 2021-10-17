@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
-import { fetchUserGalleries } from '../http/userAPI'
-import { addArtToGallery } from '../http/galleryAPI'
+import { fetchUserGalleries } from '../api/userAPI'
+import { addArtToGallery } from '../api/galleryAPI'
 
-import './styles/AddArtPiece.css'
+import '../styles/AddArtPiece.css'
 
 const AddArtPiece = () => {
   const [loading, setLoading] = useState(true)

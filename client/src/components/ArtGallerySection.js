@@ -1,4 +1,4 @@
-import './ArtGallerySection.css'
+import '../styles/ArtGallerySection.css'
 
 // eslint-disable-next-line react/prop-types
 const ArtGallerySection = ({ artPieces, buttonClick, buttonText }) => {

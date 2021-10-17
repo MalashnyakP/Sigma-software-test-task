@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { createGallery } from '../http/galleryAPI'
+import { createGallery } from '../api/galleryAPI'
 import { Context } from '..'
 import { GALLERY_ROUTE } from '../configs/routes.enum'
 
-import './styles/CreateGallery.css'
+import '../styles/CreateGallery.css'
 
 const CreateGallery = () => {
   const [name, setName] = useState('')

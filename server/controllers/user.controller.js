@@ -26,10 +26,10 @@ module.exports = {
 
     updateUser: async (req, res, next) => {
         try {
-            const { user_id } = req.params;
+            const { current_user } = req;
             const { ...userData } = req.body;
 
-            const updatedUser = await User.findByIdAndUpdate({ _id: user_id }, { ...userData }, { new: true });
+            const updatedUser = await User.findByIdAndUpdate({ _id: current_user._id }, { ...userData }, { new: true });
 
             res.json(userUtil.userNormalizator(updatedUser));
         } catch (e) {

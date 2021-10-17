@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite'
 import React, { useContext, useEffect } from 'react'
 
-import { fetchCurrentUser } from '../http/userAPI'
+import { fetchCurrentUser } from '../api/userAPI'
 import { Context } from '..'
 
-import './styles/Cabinet.css'
+import '../styles/Cabinet.css'
 
 const User = observer(() => {
   const { user } = useContext(Context)
@@ -16,7 +16,7 @@ const User = observer(() => {
   Object.assign(data, user.user.data)
 
   return (
-    <div>
+    <div className="cabinetContainer">
       {data.email ? (
         <div>
           <p>Email:</p>

@@ -6,10 +6,10 @@ import {
   LOG_IN_ROUTE,
   REGISTRATION_ROUTE,
 } from '../configs/routes.enum'
-import { login, registration } from '../http/userAPI'
+import { login, registration } from '../api/userAPI'
 import { observer } from 'mobx-react-lite'
 
-import './styles/Auth.css'
+import '../styles/Auth.css'
 
 const Auth = observer(() => {
   const { user } = useContext(Context)

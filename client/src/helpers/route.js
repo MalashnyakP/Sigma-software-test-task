@@ -1,5 +1,5 @@
-import Auth from './pages/Auth'
-import ArtGallery from './pages/ArtGallery'
+import Auth from '../pages/Auth'
+import ArtGallery from '../pages/ArtGallery'
 import {
   ART_GALLERY_ROUTE,
   CREATE_GALLERY,
@@ -10,13 +10,13 @@ import {
   ADD_ART_PIECE,
   UPDATE_USER,
   BASKET,
-} from './configs/routes.enum'
-import Gallery from './pages/Gallery'
-import User from './pages/User'
-import CreateGallery from './pages/CreateGallery'
-import AddArtPiece from './pages/AddArtPiece'
-import UpdateUser from './pages/UpdateUser'
-import Basket from './pages/Basket'
+} from '../configs/routes.enum'
+import Gallery from '../pages/Gallery'
+import User from '../pages/User'
+import CreateGallery from '../pages/CreateGallery'
+import AddArtPiece from '../pages/AddArtPiece'
+import UpdateUser from '../pages/UpdateUser'
+import Basket from '../pages/Basket'
 
 export const authRoutes = [
   {

@@ -11,9 +11,9 @@ import {
 } from '../configs/routes.enum'
 import { observer } from 'mobx-react-lite'
 import { useHistory } from 'react-router-dom'
-import { logout } from '../http/userAPI'
+import { logout } from '../api/userAPI'
 
-import './NavBar.css'
+import '../styles/NavBar.css'
 
 const NavBar = observer(() => {
   const { user } = useContext(Context)

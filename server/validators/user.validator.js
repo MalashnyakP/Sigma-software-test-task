@@ -65,6 +65,13 @@ module.exports = {
         email: Joi
             .string()
             .trim()
-            .regex(EMAIL_REGEX)
+            .regex(EMAIL_REGEX),
+
+        avatar: Joi
+            .string(),
+
+        role: Joi
+            .string()
+            .trim()
     })
 };
