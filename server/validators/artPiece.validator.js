@@ -6,7 +6,6 @@ module.exports = {
     createArtValidator: Joi.object({
         name: Joi
             .string()
-            .alphanum()
             .min(3).max(30)
             .trim()
             .required(),

@@ -10,15 +10,12 @@ import '../styles/CreateGallery.css'
 const CreateGallery = () => {
   const [name, setName] = useState('')
   const [location, setLocation] = useState('')
-  const history = useHistory()
   const { gallery } = useContext(Context)
 
   const createGalleryClick = async () => {
     const gallery_id = await createGallery(name, location)
 
     gallery.setGalleryId(gallery_id)
-
-    history.push(GALLERY_ROUTE)
   }
 
   return (
