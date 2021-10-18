@@ -5,7 +5,8 @@ const { dbTableEnum: { GALLERY, USER } } = require('../configs');
 const gallerySchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     location: {
         type: String,

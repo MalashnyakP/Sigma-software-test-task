@@ -6,14 +6,12 @@ module.exports = {
     createGalleryValidator: Joi.object({
         name: Joi
             .string()
-            .alphanum()
             .min(3).max(30)
             .trim()
             .required(),
 
         location: Joi
             .string()
-            .alphanum()
             .min(8).max(50)
             .required(),
 

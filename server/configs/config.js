@@ -1,5 +1,5 @@
 module.exports = {
-    DB_CONNECT_URL: process.env.DB_CONNECT_URL || 'mongodb://localhost:27017/test_task',
+    DB_CONNECT_URL: process.env.DB_CONNECT_URL || 'mongodb+srv://admin:admin@sigma-test-task.czzgy.mongodb.net/test-task?retryWrites=true&w=majority',
     PORT: process.env.PORT || 5000,
 
     ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET || 'access',
